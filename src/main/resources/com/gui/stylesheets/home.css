@@ -51,6 +51,10 @@
     -fx-alignment: center;
 }
 
+#logoutButton{
+    -fx-background-color: rgb(150, 60, 80);
+}
+
 .col, #title{
    //-fx-background-color: linear-gradient(#AC7168, whitesmoke);
 

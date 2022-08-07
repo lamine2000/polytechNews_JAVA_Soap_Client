@@ -8,8 +8,6 @@ import com.service.UserManagerService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -17,8 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 import java.io.IOException;
@@ -33,7 +29,9 @@ public class AuthenticationController {
     @FXML
     public Button submitButton;
     @FXML
-    public AnchorPane conteneur;
+    public AnchorPane container;
+    @FXML
+    public StackPane parentContainer;
     @FXML
     public GridPane gridPane;
 
@@ -58,10 +56,16 @@ public class AuthenticationController {
         else if(AdminUtility.isAdmin(new User(login, password))){
             //navigate to admin page
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
-            root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("home.css")).toExternalForm());
-            conteneur.getChildren().add(root);
-            conteneur.getChildren().remove(gridPane);
+            StackPane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("views/home.fxml")));
+
+            parentContainer = (StackPane)container.getParent();
+
+            parentContainer.getStylesheets().remove(0);
+            parentContainer.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheets/home.css")).toExternalForm());
+
+            parentContainer.getChildren().remove(container);
+            parentContainer.getChildren().addAll(root.getChildren());
+
         }
 
 

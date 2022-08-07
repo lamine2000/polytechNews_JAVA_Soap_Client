@@ -31,4 +31,24 @@ public class AdminUtility {
                 .getString("type")
                 .equalsIgnoreCase("ADMINISTRATOR");
     }
+
+    public static Boolean isAdminByLogin(String login) throws SQLException {
+        PreparedStatement sql = getConnection().prepareStatement("select type from User where login = ?");
+        sql.setString(1, login);
+        ResultSet r = sql.executeQuery();
+        r.next();
+
+        return r
+                .getString("type")
+                .equalsIgnoreCase("ADMINISTRATOR");
+    }
+
+    public static int getIdByLogin(String login) throws SQLException {
+        PreparedStatement sql = getConnection().prepareStatement("select id from User where login = ?");
+        sql.setString(1, login);
+        ResultSet r = sql.executeQuery();
+        r.next();
+
+        return r.getInt("id");
+    }
 }

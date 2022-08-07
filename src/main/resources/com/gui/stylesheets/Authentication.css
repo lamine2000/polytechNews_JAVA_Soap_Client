@@ -22,7 +22,7 @@
     -fx-text-color:orange;
 }
 
-#conteneur{
+#container{
     -fx-effect: innershadow( gaussian , rgba(0.0,0.0,0.0,0.8) , 20.0,0.0,0.0,0.0 );
     -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.8) , 10.0,0.0,0.0,1.0 );
     -fx-background-image:url('https://i.imgur.com/saBl1jp.png');
