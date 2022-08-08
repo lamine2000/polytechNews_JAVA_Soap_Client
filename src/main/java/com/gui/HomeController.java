@@ -107,9 +107,9 @@ public class HomeController implements Initializable {
         updateTable();
     }
 
-    public void handleCreateUserButtonAction(ActionEvent actionEvent) {
+    public void handleCreateUserButtonAction(ActionEvent actionEvent) throws IOException {
         //chargement page de creation de user
-        System.out.println("create user");
+        loadCreate();
     }
 
     public void handleRefreshButtonAction(ActionEvent actionEvent) {
@@ -153,8 +153,13 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
-    private void loadCreate(ActionEvent event){
-
+    private void loadCreate() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("views/createUser.fxml")));
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheets/create.css")).toExternalForm());
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     private void updateTable(){
@@ -201,7 +206,7 @@ public class HomeController implements Initializable {
 
             //attach ids
             modifButtons[i].setId(users.get(i).getLogin() + "°" + types[i] + "°" + users.get(i).getPassword());
-            delButtons[i].setId(users.get(i).getLogin());
+            delButtons[i].setId(users.get(i).getLogin() + "°" + i);
 
             //attach modif actions
             modifButtons[i].setOnAction(event -> {
@@ -223,8 +228,23 @@ public class HomeController implements Initializable {
 
             //attach del actions
             delButtons[i].setOnAction(event -> {
-                //chargement page modif
-                System.out.println("del");
+                //delete user
+                String[] data = ((Button)(event.getSource()))
+                        .getId()
+                        .split("°");
+
+                String login = data[0];
+                int index = Integer.parseInt(data[1]);
+
+                UserManager um = new UserManagerService().getUserManagerPort();
+                try {
+                    um.deleteUser("mytoken", AdminUtility.getIdByLogin(login));
+                } catch (SQLException_Exception | SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                //refresh table
+                handleRefreshButtonAction(event);
             });
 
             //insert row into list

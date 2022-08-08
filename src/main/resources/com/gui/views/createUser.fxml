@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Text?>
 <?com.gluonhq.charm.glisten.control.TextField ?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.ModifyUserController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.CreateUserController">
    <AnchorPane id="modif" fx:id="container" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0">
-      <TextField id="login" fx:id="loginField" layoutX="139.0" layoutY="141.0" prefHeight="38.0" prefWidth="225.0" promptText="login utilsateur" AnchorPane.topAnchor="141.0" />
+      <TextField id="login" fx:id="loginField" layoutX="139.0" layoutY="141.0" prefHeight="38.0" prefWidth="225.0" promptText="login utilisateur" AnchorPane.topAnchor="141.0" />
       <Text layoutX="151.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titre" text="Login" AnchorPane.leftAnchor="151.0" AnchorPane.topAnchor="117.63020896911621" />
       <Button id="fermerButton" fx:id="fermerButton" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleFermerButtonAction" prefHeight="38.0" prefWidth="74.0" text="Fermer" AnchorPane.topAnchor="348.0" />
       <TextField id="password" fx:id="passwordField" layoutX="139.0" layoutY="286.0" prefHeight="38.0" prefWidth="225.0" promptText="mot de passe" />
